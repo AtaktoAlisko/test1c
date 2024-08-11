@@ -9,23 +9,18 @@ import About from "../Components/BasicInfo";
 import Reviews from "../Components/Reviews";
 import Footer from "../Components/Footer";
 import ServicesCards from "../Components/ServicesCards";
-import ServicesExtended from "@/Components/ServicesExtended";
 
 export default function Home() {
   return (
     <>
-      {/* <Head /> looks bad imo*/}
-      {/* <Header /> added in layout.tsx */}
-
       <Carousel />
       <About />
 
       <DepartmentGrid />
       <ServicesCards />
-      {/* <ServicesExtended /> */}
+
       <ProudNumbersBar />
       <Reviews />
-      {/* <Footer /> added in layout.tsx */}
     </>
   );
 }

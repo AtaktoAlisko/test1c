@@ -1,4 +1,7 @@
 import Image from "next/image";
+import img1 from "../../public/image-1.jpeg";
+import img2 from "../../public/image-2.jpeg";
+import img3 from "../../public/image-3.jpeg";
 
 export default function ServicesCards() {
   return (
@@ -50,7 +53,7 @@ const services = [
     title: "1С:ERP Управление предприятием",
     description:
       "Мы предоставляем полный комплекс услуг по внедрению решений и обеспечиваем самый высокий уровень обслуживания.",
-    image: "https://tecdn.b-cdn.net/img/new/standard/nature/184.jpg",
+    image: img1,
     alt: "ERP Управление предприятием",
     link: "#!",
   },
@@ -58,7 +61,7 @@ const services = [
     title: "1С:Управление холдингом",
     description:
       "Мы ответственно подходим к своему делу. Всегда следим за соблюдением сроков и качества выполнения работ.",
-    image: "https://tecdn.b-cdn.net/img/new/standard/nature/184.jpg",
+    image: img2,
     alt: "Управление холдингом",
     link: "#!",
   },
@@ -66,7 +69,7 @@ const services = [
     title: "ВСЕ УСЛУГИ",
     description:
       "В нашей компетенции внедрять решения в крупных проектах и ​​доводить их до победы.",
-    image: "https://tecdn.b-cdn.net/img/new/standard/nature/184.jpg",
+    image: img3,
     alt: "Все услуги",
     link: "#!",
   },

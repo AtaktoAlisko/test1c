@@ -8,9 +8,9 @@ interface ModalProps {
 }
 
 const Modal: React.FC<ModalProps> = ({ isOpen, toggleModal }) => {
-  if (!isOpen) return null;
+  const form = useRef<HTMLFormElement>(null); // Always call useRef here
 
-  const form = useRef<HTMLFormElement>(null);
+  if (!isOpen) return null; // Return early if the modal is not open
 
   const sendEmail = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -42,32 +42,31 @@ const Modal: React.FC<ModalProps> = ({ isOpen, toggleModal }) => {
       id="authentication-modal"
       tabIndex={-1}
       aria-hidden="true"
-      className="fixed inset-0 z-50 flex items-center justify-center w-full h-full bg-gray-800 bg-opacity-50"
+      className="fixed inset-0 z-50 flex items-center justify-center w-full h-full bg-black bg-opacity-60 backdrop-blur-sm"
     >
-      <div className="relative p-4 w-full max-w-md max-h-full">
-        <div className="relative bg-white rounded-lg shadow dark:bg-gray-700">
-          <div className="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
-            <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
+      <div className="relative p-6 w-full max-w-lg">
+        <div className="relative bg-white dark:bg-gray-800 rounded-lg shadow-lg">
+          <div className="flex items-center justify-between p-4 md:p-6 border-b border-gray-200 dark:border-gray-600">
+            <h3 className="text-2xl font-semibold text-gray-900 dark:text-white">
               Свяжитесь с нами
             </h3>
             <button
               type="button"
-              className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 inline-flex items-center"
+              className="text-gray-500 hover:text-gray-800 dark:hover:text-gray-200 transition-colors rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-200 dark:focus:ring-gray-600"
               onClick={toggleModal}
             >
               <svg
-                className="w-3 h-3"
-                aria-hidden="true"
+                className="w-5 h-5"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
-                viewBox="0 0 14 14"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
               >
                 <path
-                  stroke="currentColor"
                   strokeLinecap="round"
                   strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"
+                  strokeWidth={2}
+                  d="M6 18L18 6M6 6l12 12"
                 />
               </svg>
               <span className="sr-only">Close modal</span>
@@ -76,18 +75,20 @@ const Modal: React.FC<ModalProps> = ({ isOpen, toggleModal }) => {
           <form
             ref={form}
             onSubmit={sendEmail}
-            className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 w-full max-w-md"
+            className="p-6 bg-white dark:bg-gray-800 rounded-lg"
           >
-            <h2 className="text-2xl font-bold mb-4 text-center">Contact Us</h2>
+            <h2 className="text-3xl font-bold mb-6 text-center text-gray-900 dark:text-gray-100">
+              Contact Us
+            </h2>
             <div className="mb-4">
               <label
-                className="block text-gray-700 text-sm font-bold mb-2"
+                className="block text-gray-700 dark:text-gray-300 text-sm font-bold mb-2"
                 htmlFor="name"
               >
-                Name
+                Ваша Имя:
               </label>
               <input
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                className="shadow-sm appearance-none border border-gray-300 dark:border-gray-600 rounded-lg w-full py-3 px-4 text-gray-900 dark:text-gray-200 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400"
                 id="name"
                 type="text"
                 name="user_name"
@@ -97,13 +98,13 @@ const Modal: React.FC<ModalProps> = ({ isOpen, toggleModal }) => {
             </div>
             <div className="mb-4">
               <label
-                className="block text-gray-700 text-sm font-bold mb-2"
+                className="block text-gray-700 dark:text-gray-300 text-sm font-bold mb-2"
                 htmlFor="email"
               >
-                Email
+                Email:
               </label>
               <input
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                className="shadow-sm appearance-none border border-gray-300 dark:border-gray-600 rounded-lg w-full py-3 px-4 text-gray-900 dark:text-gray-200 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400"
                 id="email"
                 type="email"
                 name="user_email"
@@ -113,26 +114,26 @@ const Modal: React.FC<ModalProps> = ({ isOpen, toggleModal }) => {
             </div>
             <div className="mb-6">
               <label
-                className="block text-gray-700 text-sm font-bold mb-2"
+                className="block text-gray-700 dark:text-gray-300 text-sm font-bold mb-2"
                 htmlFor="message"
               >
-                Message
+                Сообщение:
               </label>
               <textarea
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                className="shadow-sm appearance-none border border-gray-300 dark:border-gray-600 rounded-lg w-full py-3 px-4 text-gray-900 dark:text-gray-200 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400"
                 id="message"
                 name="message"
                 placeholder="Your Message"
-                rows={4}
+                rows={5}
                 required
               ></textarea>
             </div>
             <div className="flex items-center justify-center">
               <button
-                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                className="bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white font-bold py-2 px-6 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 transition-colors"
                 type="submit"
               >
-                Send
+                Отправить
               </button>
             </div>
           </form>

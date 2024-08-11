@@ -15,7 +15,7 @@ const departments = [
 const EmojiGrid = () => {
   return (
     <>
-      <h2 className="text-center text-4xl font-bold text-gray-800 mt-10 mb-10">
+      <h2 className="text-center text-2xl font-bold text-gray-800 mt-10 mb-10 sm:text-3xl md:text-4xl">
         ПОЧЕМУ ВЫБИРАЮТ НАС
       </h2>
       <div className="grid grid-cols-4 gap-6 p-4 mx-auto max-w-screen-xl mt-10 mb-20">
