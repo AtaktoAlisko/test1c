@@ -1,6 +1,6 @@
 "use client";
 import emailjs from "@emailjs/browser";
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 
 interface ModalProps {
   isOpen: boolean;
@@ -8,7 +8,8 @@ interface ModalProps {
 }
 
 const Modal: React.FC<ModalProps> = ({ isOpen, toggleModal }) => {
-  const form = useRef<HTMLFormElement>(null); // Always call useRef here
+  const form = useRef<HTMLFormElement>(null);
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
   const sendEmail = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -28,6 +29,8 @@ const Modal: React.FC<ModalProps> = ({ isOpen, toggleModal }) => {
       .then(
         () => {
           console.log("SUCCESS!");
+          form.current?.reset(); // Clear the form
+          setIsSubmitted(true); // Set submission state
         },
         (error) => {
           console.log("FAILED...", error.text);
@@ -39,7 +42,7 @@ const Modal: React.FC<ModalProps> = ({ isOpen, toggleModal }) => {
     <div
       id="authentication-modal"
       tabIndex={-1}
-      aria-hidden={!isOpen} // Accessibility improvement
+      aria-hidden={!isOpen}
       className={`fixed inset-0 z-50 flex items-center justify-center w-full h-full bg-black bg-opacity-60 backdrop-blur-sm ${
         isOpen ? "block" : "hidden"
       }`}
@@ -72,7 +75,11 @@ const Modal: React.FC<ModalProps> = ({ isOpen, toggleModal }) => {
               <span className="sr-only">Close modal</span>
             </button>
           </div>
-          {isOpen && (
+          {isSubmitted ? (
+            <div className="p-6 text-center text-gray-900 dark:text-gray-100">
+              Спасибо за ваше сообщение!
+            </div>
+          ) : (
             <form
               ref={form}
               onSubmit={sendEmail}
