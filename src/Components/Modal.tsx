@@ -38,14 +38,16 @@ const Modal: React.FC<ModalProps> = ({ isOpen, toggleModal }) => {
       );
   };
 
+  if (!isOpen) {
+    return null; // Return null if the modal is not open
+  }
+
   return (
     <div
       id="authentication-modal"
       tabIndex={-1}
       aria-hidden={!isOpen}
-      className={`fixed inset-0 z-50 flex items-center justify-center w-full h-full bg-black bg-opacity-60 backdrop-blur-sm ${
-        isOpen ? "block" : "hidden"
-      }`}
+      className="fixed inset-0 z-50 flex items-center justify-center w-full h-full bg-black bg-opacity-60 backdrop-blur-sm"
     >
       <div className="relative p-6 w-full max-w-lg">
         <div className="relative bg-white dark:bg-gray-800 rounded-lg shadow-lg">
